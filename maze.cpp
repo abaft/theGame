@@ -13,9 +13,9 @@ private:
   int width; // MUST BE ODD ints
   int mallocCells()
   {
-    srand(time(NULL));
-    m = (cell*) malloc( sizeof(cell) * (width * height) );
-    if (m == NULL)
+    srand(time(nullptr));
+    m = new cell[width * height];
+    if (m == nullptr)
       return 1;
 
     cell* d;
@@ -52,7 +52,7 @@ private:
   
   cell* link(cell* d)
   {
-    if ( d == NULL ) return  NULL;
+    if ( d == nullptr ) return nullptr;
 
 
     int x, y;
@@ -70,7 +70,7 @@ private:
       switch (randDir)
       {
         case 8: //NORTH
-          if (cellByCood(x, y-1)->parent == NULL)
+          if (cellByCood(x, y-1)->parent == nullptr)
           {
             rtn = cellByCood(x, y-1);
             d->wall &= 1; //01
@@ -80,7 +80,7 @@ private:
           else
             continue;
         case 4: //EAST
-          if (cellByCood(x+1, y)->parent == NULL)
+          if (cellByCood(x+1, y)->parent == nullptr)
           {
             rtn = cellByCood(x+1, y);
             d->wall &= 2; // 10
@@ -90,7 +90,7 @@ private:
           else
             continue;
         case 2: //SOUTH
-          if (cellByCood(x, y+1)->parent == NULL)
+          if (cellByCood(x, y+1)->parent == nullptr)
           {
             rtn = cellByCood(x, y+1);
             rtn->wall &= 1; //01
@@ -100,7 +100,7 @@ private:
           else
             continue;
         case 1: //WEST
-          if (cellByCood(x-1, y)->parent == NULL)
+          if (cellByCood(x-1, y)->parent == nullptr)
           {
             rtn = cellByCood(x-1, y);
             rtn->wall &= 2; //10
@@ -112,7 +112,7 @@ private:
       }
     }
 
-    return (cell*) d->parent;
+    return d->parent;
   }
 
 public:

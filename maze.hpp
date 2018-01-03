@@ -2,14 +2,13 @@
 #ifndef _MAZE__HPP
 #define _MAZE__HPP
 
-typedef struct
+struct cell
 {
   int x,y;
   char freedir; // NESW  4 bit direction
   char wall; // NE 2 bit
-  char type; // W - Wall, C - Space
-  void* parent;
-} cell;
+  cell* parent;
+};
 
 /*class maze{
 private:
